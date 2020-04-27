@@ -1,0 +1,65 @@
+# configuration.toml
+[Writable]
+LogLevel = 'DEBUG'
+
+[Service]
+Host = "edgex-device-rest"
+Port = 49986
+ConnectRetries = 20
+Labels = []
+OpenMsg = "REST device started"
+Timeout = 5000
+EnableAsyncReadings = true
+AsyncBufferSize = 16
+
+[Registry]
+Host = "edgex-core-consul"
+Port = 8500
+CheckInterval = "10s"
+FailLimit = 3
+FailWaitTime = 10
+Type = "consul"
+
+[Logging]
+EnableRemote = false
+File = "./device-rest-go.log"
+
+[Clients]
+  [Clients.Data]
+  Protocol = "http"
+  Host = "edgex-core-data"
+  Port = 48080
+  Timeout = 5000
+
+  [Clients.Metadata]
+  Protocol = "http"
+  Host = "edgex-core-metadata"
+  Port = 48081
+  Timeout = 5000
+
+  [Clients.Logging]
+  Protocol = "http"
+  Host = "edgex-support-logging"
+  Port = 48061
+
+[Device]
+  DataTransform = true
+  InitCmd = ""
+  InitCmdArgs = ""
+  MaxCmdOps = 128
+  MaxCmdValueLen = 256
+  RemoveCmd = ""
+  RemoveCmdArgs = ""
+  ProfilesDir = "/custom-config"
+
+# Pre-define Devices
+[[DeviceList]]
+  Name = "REST_DEVICE"
+  Profile = "Test.Device.REST.Profile"
+  Description = "RESTful Device that sends data"
+  Labels = [ "rest", "float", "int" ]
+  [DeviceList.Protocols]
+    [DeviceList.Protocols.other]
+
+# Driver configs
+[Driver]
