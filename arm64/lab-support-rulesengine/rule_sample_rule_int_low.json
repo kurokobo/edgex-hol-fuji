@@ -1,0 +1,20 @@
+{
+    "name": "rule_int_low",
+    "condition": {
+        "device": "REST_DEVICE",
+        "checks": [
+            {
+                "parameter": "int",
+                "operand1": "Integer.parseInt(value)",
+                "operation": "<",
+                "operand2": "20"
+            }
+        ]
+    },
+    "action": {
+        "device": "09dae1fc-e2be-4388-9677-639d2f24c58b",
+        "command": "1c7a50e7-5424-4bce-9b9a-29849510580e",
+        "body": "{\\\"message\\\":\\\"LOW\\\"}"
+    },
+    "log": "Action triggered: The value is too low."
+}

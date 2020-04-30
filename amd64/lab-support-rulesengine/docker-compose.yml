@@ -265,8 +265,8 @@ services:
         aliases:
           - edgex-support-rulesengine
     volumes:
-      - ./rulesengine/application.properties:/edgex/edgex-support-rulesengine/application.properties
-      - ./rulesengine/rule-template.drl:/edgex/edgex-support-rulesengine/templates/rule-template.drl
+      - ./support-rulesengine/application.properties:/edgex/edgex-support-rulesengine/application.properties
+      - ./support-rulesengine/rule-template.drl:/edgex/edgex-support-rulesengine/templates/rule-template.drl
     depends_on:
       - app-service-rules
 
